@@ -1,0 +1,17 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: hello-world-job
+spec:
+  schedule: "* * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - image: busybox
+            name: job
+            command:
+            - echo 
+            - Hello World
+          restartPolicy: Never

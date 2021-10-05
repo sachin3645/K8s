@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: config-map-volume
+  name: config-map-volume
+spec:
+  containers:
+  - image: nginx
+    name: config-map-volume
+    volumeMounts:
+    - name: customwebcontent
+      mountPath: /usr/share/nginx/html
+  volumes:
+  - name: customwebcontent
+    configMap:
+      name: html-content
+      items:
+      - key: webcontent.html
+        path: index.html
